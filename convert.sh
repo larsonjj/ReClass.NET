@@ -24,20 +24,25 @@ cd ./stocks
 
 # Step 3: Rename all files with variations of strings
 echo "Converting file names"
-find . -type d -name "ReClass\.NET" -exec rename 's|ReClass.NET|Stocks|' {} +
-find . -type d -name "ReClass\.NET*" -exec rename 's|ReClass.NET|Stocks|' {} +
-find . -type f -name "ReClass\.NET*" -exec rename 's|ReClass.NET|Stocks|' {} +
-find . -type f -name "ReClassNET*" -exec rename 's|ReClassNET|Stocks|' {} +
+find . -type d -name "ReClass\.NET" -exec rename 's|ReClass.NET|StocksNet|' {} +
+find . -type d -name "ReClass\.NET*" -exec rename 's|ReClass.NET|StocksNet|' {} +
+find . -type f -name "ReClass\.NET*" -exec rename 's|ReClass.NET|StocksNet|' {} +
+find . -type f -name "ReClassNetFile*.cs" -exec rename 's|ReClassNet|StocksNet|' {} +
+find . -type f -name "ReClassNET_*" -exec rename 's|ReClassNET_|StocksNet_|' {} +
+find . -type f -name "ReClassNet.ico" -exec rename 's|ReClassNet|StocksNet|' {} +
 find . -type d -name "ReClass*" -exec rename 's|ReClass|Stocks|' {} +
-find . -type f -name "ReClass*" -exec rename 's|ReClass|Stocks|' {} +
+find . -type f -name "ReClass*.cs" -exec rename 's|ReClass|Stocks|' {} +
+find . -type f -name "IReClass*.cs" -exec rename 's|ReClass|Stocks|' {} +
 
 # Step 4: Replace all variations of strings
 echo "Converting file content"
-find . -type f \( -name "*.txt" -or -name "*.md" -or -name "Makefile" -or -name "*.sln" -or -name "*.vcxproj" -or -name "*.c" -or -name "*.cs" -or -name "*.cpp" -or -name "*.csproj" -or -name "*.h" \) -print0 | xargs -0 perl -pi -e 's/(ReClass|Reclass)\.(NET|Net)/Stocks/g'
-find . -type f \( -name "*.cpp" -or -name "*.hpp" -or -name "Makefile" -or -name "*.cs" -or -name "*.vcxproj" -or -name "*.csproj" \) -print0 | xargs -0 perl -pi -e 's/RECLASS/STOCKS./g'
-find . -type f \( -name "*.cpp" -or -name "*.hpp" -or -name "Makefile" -or -name "*.cs" -or -name "*.vcxproj" -or -name "*.vcxproj.filters" -or -name "*.csproj" -or -name "*.resx" \) -print0 | xargs -0 perl -pi -e 's/ReClass(NET|Net)/Stocks./g'
-find . -type f \( -name "*.cs" -or -name "*.csproj" \) -print0 | xargs -0 perl -pi -e 's/ReClass/Stocks./g'
-find . -type f \( -name "*.cs" \) -print0 | xargs -0 perl -pi -e 's/reclass/stocks./g'
+find ./StocksNet/DataExchange/Stocks -type f \( -name "StocksNet*.cs" \) -print0 | xargs -0 perl -pi -e 's/ReClassNet/StocksNet/g'
+find ./StocksNet_Launcher/DataExchange/Stocks -type f \( -name "StocksNet*.cs" \) -print0 | xargs -0 perl -pi -e 's/ReClassNet/StocksNet/g'
+find . -type f \( -name "*.txt" -or -name "*.md" -or -name "Makefile" -or -name "*.sln" -or -name "*.vcxproj" -or -name "*.c" -or -name "*.cs" -or -name "*.cpp" -or -name "*.csproj" -or -name "*.h" \) -print0 | xargs -0 perl -pi -e 's/(ReClass|Reclass)\.(NET|Net)/StocksNet/g'
+find . -type f \( -name "*.cpp" -or -name "*.hpp" -or -name "Makefile" -or -name "*.cs" -or -name "*.vcxproj" -or -name "*.csproj" \) -print0 | xargs -0 perl -pi -e 's/RECLASS/STOCKS/g'
+find . -type f \( -name "*.cpp" -or -name "*.hpp" -or -name "Makefile" -or -name "*.cs" -or -name "*.vcxproj" -or -name "*.vcxproj.filters" -or -name "*.csproj" -or -name "*.resx" \) -print0 | xargs -0 perl -pi -e 's/ReClass(NET|Net)/StocksNet/g'
+find . -type f \( -name "*.cs" -or -name "*.csproj" \) -print0 | xargs -0 perl -pi -e 's/ReClass/Stocks/g'
+find . -type f \( -name "*.cs" \) -print0 | xargs -0 perl -pi -e 's/reclass/stocks/g'
 find . -type f \( -name "*.cs" \) -print0 | xargs -0 perl -pi -e 's/ReClass\./Stocks\./g'
 
 # Return to root folder
